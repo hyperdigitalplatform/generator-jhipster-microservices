@@ -104,7 +104,7 @@ public interface <%= entityClass %>Mapper extends EntityMapper<<%= dtoClass %>, 
     <%_ const mapperName = otherEntity.entityInstance + this._.upperFirst(relatedField.propertyName); _%>
 
     @Named("<%= mapperName %>")
-    @BeanMapping(ignoreByDefault = true)
+    <%# @BeanMapping(ignoreByDefault = true) %>
     <%_ for (const field of otherEntity.primaryKey.fields) { _%>
     @Mapping(target = "<%= field.propertyName %>", source = "<%= field.propertyName %>")
     <%_ } _%>

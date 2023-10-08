@@ -16,7 +16,7 @@
  See the License for the specific language governing permissions and
  limitations under the License.
 -%>
-package <%= entityAbsolutePackage %>.web.rest;
+package <%= entityAbsolutePackage %>.controller;
 
 <%_
 const viaService = !serviceNo;
@@ -38,9 +38,9 @@ import <%= entityAbsolutePackage %>.repository.search.<%= entityClass %>SearchRe
 <%_ if (saveUserSnapshot) { _%>
 import <%= entityAbsolutePackage %>.repository.UserRepository;
 <%_ } _%>
-import <%= packageName %>.web.rest.errors.BadRequestAlertException;
+import <%= packageName %>.controller.errors.BadRequestAlertException;
 <%_ if (searchEngineElasticsearch) { _%>
-import <%= packageName %>.web.rest.errors.ElasticsearchExceptionMapper;
+import <%= packageName %>.controller.errors.ElasticsearchExceptionMapper;
 <%_ } _%>
 <%_ if (dtoMapstruct) { _%>
 import <%= entityAbsolutePackage %>.service.dto.<%= dtoClass %>;
@@ -134,9 +134,9 @@ import java.util.stream.StreamSupport;
 <%_ if (databaseTypeSql && !viaService && !saveUserSnapshot) { _%>
 @Transactional
 <%_ } _%>
-public class <%= entityClass %>Resource {
+public class <%= entityClass %>Controller {
 
-    private final Logger log = LoggerFactory.getLogger(<%= entityClass %>Resource.class);
+    private final Logger log = LoggerFactory.getLogger(<%= entityClass %>Controller.class);
 <%_ if (!readOnly) { _%>
 
   <%_ let entityName = entityInstance;
@@ -153,7 +153,7 @@ public class <%= entityClass %>Resource {
     const instanceName = restInstance;
     const mapper = entityInstance  + 'Mapper';
     const entityToDtoReference = mapper + '::' + 'toDto';
-    _%><%- include('../../common/inject_template', {readOnly: readOnly, viaService: viaService, constructorName: entityClass + 'Resource', queryService: jpaMetamodelFiltering, isUsingMapsId: isUsingMapsId, mapsIdAssoc: mapsIdAssoc, isController: true, reactive: reactive}); -%>
+    _%><%- include('../common/inject_template', {readOnly: readOnly, viaService: viaService, constructorName: entityClass + 'Controller', queryService: jpaMetamodelFiltering, isUsingMapsId: isUsingMapsId, mapsIdAssoc: mapsIdAssoc, isController: true, reactive: reactive}); -%>
 <%_ if (!readOnly) { _%>
 
     /**
@@ -322,7 +322,7 @@ public class <%= entityClass %>Resource {
     <% } %>
   <%_ } _%>
 
-            <%- include('../../common/patch_template', {isService: false, viaService: viaService}); -%>
+            <%- include('../common/patch_template', {isService: false, viaService: viaService}); -%>
   <%_ if (reactive) { _%>
             return result
                 .switchIfEmpty(Mono.error(new ResponseStatusException(HttpStatus.NOT_FOUND)))
@@ -367,7 +367,7 @@ public class <%= entityClass %>Resource {
 <%_ if (databaseTypeSql && isUsingMapsId && !viaService) { _%>
     @Transactional(readOnly = true)
 <%_ } _%>
-<%- include('../../common/get_all_template', {viaService}); -%>
+<%- include('../common/get_all_template', {viaService}); -%>
 
 <%_ if (!jpaMetamodelFiltering && reactive && paginationNo) { _%>
     /**
@@ -399,7 +399,7 @@ public class <%= entityClass %>Resource {
     @Transactional(readOnly = true)
 <%_ } _%>
     public <% if (reactive) { %>Mono<<% } %>ResponseEntity<<%= instanceType %>><% if (reactive) { %>><% } %> get<%= entityClass %>(@PathVariable <%= primaryKey.type %> id) {
-        log.debug("REST request to get <%= entityClass %> : {}", id);<%- include('../../common/get_template', {viaService, returnDirectly:false, implementsEagerLoadApis}); -%>
+        log.debug("REST request to get <%= entityClass %> : {}", id);<%- include('../common/get_template', {viaService, returnDirectly:false, implementsEagerLoadApis}); -%>
         return ResponseUtil.wrapOrNotFound(<%= instanceName %>);
     }
 <%_ if (!readOnly) { _%>
@@ -413,7 +413,7 @@ public class <%= entityClass %>Resource {
     @DeleteMapping("/<%= entityApiUrl %>/{id}")
     public <% if (reactive) { %>Mono<<% } %>ResponseEntity<Void><% if (reactive) { %>><% } %> delete<%= entityClass %>(@PathVariable <%= primaryKey.type %> id) {
         log.debug("REST request to delete <%= entityClass %> : {}", id);
-<%- include('../../common/delete_template', {viaService: viaService, fromResource: true}); -%>
+<%- include('../common/delete_template', {viaService: viaService, fromResource: true}); -%>
   <%_ if (reactive) { _%>
     <%_ if (databaseTypeCouchbase) { _%>
             .then(Mono.just(ResponseEntity.noContent()
@@ -444,6 +444,6 @@ public class <%= entityClass %>Resource {
   <%_ } _%>
      * @return the result of the search.
      */
-    @GetMapping("/_search/<%= entityApiUrl %>")<%- include('../../common/search_template', {viaService}); -%>
+    @GetMapping("/_search/<%= entityApiUrl %>")<%- include('../common/search_template', {viaService}); -%>
 <%_ } _%>
 }

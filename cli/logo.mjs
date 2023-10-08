@@ -19,12 +19,21 @@
 import chalk from 'chalk';
 import { packageJson } from '../lib/index.mjs';
 
-export default `${chalk.green('        ██╗')}${chalk.red(' ██╗   ██╗ ████████╗ ███████╗   ██████╗ ████████╗ ████████╗ ███████╗')}
-${chalk.green('        ██║')}${chalk.red(' ██║   ██║ ╚══██╔══╝ ██╔═══██╗ ██╔════╝ ╚══██╔══╝ ██╔═════╝ ██╔═══██╗')}
-${chalk.green('        ██║')}${chalk.red(' ████████║    ██║    ███████╔╝ ╚█████╗     ██║    ██████╗   ███████╔╝')}
-${chalk.green('  ██╗   ██║')}${chalk.red(' ██╔═══██║    ██║    ██╔════╝   ╚═══██╗    ██║    ██╔═══╝   ██╔══██║')}
-${chalk.green('  ╚██████╔╝')}${chalk.red(' ██║   ██║ ████████╗ ██║       ██████╔╝    ██║    ████████╗ ██║  ╚██╗')}
-${chalk.green('   ╚═════╝ ')}${chalk.red(' ╚═╝   ╚═╝ ╚═══════╝ ╚═╝       ╚═════╝     ╚═╝    ╚═══════╝ ╚═╝   ╚═╝')}
-                            https://www.jhipster.tech
-${chalk.white('Welcome to JHipster')} ${chalk.yellow(`v${packageJson.version}`)}
+// ${AnsiColor.GREEN}████████╗${AnsiColor.RED} ███████╗   ████████████║   ████████╗  ████████╗  ██║   ██║
+//   ${AnsiColor.GREEN}██║   ██║${AnsiColor.RED} ██╔═══██╗  ██║  ██║  ██║   ██╔═════╝  ██║   ██║  ██║   ██║
+//   ${AnsiColor.GREEN}████████║${AnsiColor.RED} ███████╔╝  ██║  ██║  ██║   ███████╔╝  ██║   ██║  ██║   ██║
+//   ${AnsiColor.GREEN}██║   ██║${AnsiColor.RED} ██╔══██║   ██║  ██║  ██║   ██╔═══╝    ██║   ██║  ██║   ██║
+//   ${AnsiColor.GREEN}██║   ██╔╝${AnsiColor.RED}██║  ██║   ██║  ██║  ██║   ████████╗  ████████╗  ████████╗
+//   ${AnsiColor.GREEN}╚═╝   ╚═╝ ${AnsiColor.RED}╚═╝  ╚═╝   ╚═╝  ╚═╝  ╚═╝   ╚═══════╝  ╚═══════╝  ╚═══════╝
+
+
+
+export default `${chalk.green('████████╗')}${chalk.red('  ███████╗   ████████████║   ████████╗  ████████╗  ██║   ██║')}
+${chalk.green('██║   ██║')}${chalk.red('  ██╔═══██╗  ██║  ██║  ██║   ██╔═════╝  ██║   ██║  ██║   ██║')}
+${chalk.green('████████║')}${chalk.red('  ███████╔╝  ██║  ██║  ██║   ███████╔╝  ██║   ██║  ██║   ██║')}
+${chalk.green('██║   ██║')}${chalk.red('  ██╔══██║   ██║  ██║  ██║   ██╔═══╝    ██║   ██║  ██║   ██║')}
+${chalk.green('██║   ██║')}${chalk.red('  ██║  ██║   ██║  ██║  ██║   ████████╗  ████████╗  ████████╗')}
+${chalk.green('╚═╝   ╚═╝ ')}${chalk.red(' ╚═╝  ╚═╝   ╚═╝  ╚═╝  ╚═╝   ╚═══════╝  ╚═══════╝  ╚═══════╝')}
+                            http://armedu.in
+${chalk.white('Welcome to Armedu Microservices Studio. powered by Jhipster')} ${chalk.yellow(`v${packageJson.version}`)}
 `;

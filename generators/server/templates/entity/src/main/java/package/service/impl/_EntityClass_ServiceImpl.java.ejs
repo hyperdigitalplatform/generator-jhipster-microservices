@@ -99,6 +99,24 @@ public class <%= serviceClassName %><% if (serviceImpl) { %> implements <%= enti
 <%- include('../../common/inject_template', {viaService: false, constructorName: serviceClassName, queryService: false, isUsingMapsId: isUsingMapsId, mapsIdAssoc: mapsIdAssoc, isController: false}); -%>
 
 <%_ if (!serviceImpl) { _%>
+
+    /**
+    * check if a <%= entityInstance %> exists.
+    *
+    * @param <%= primaryKey.name %> primary key with <%= primaryKey.type %> type to check entity existance.
+    * @return true or false.
+    */
+    <%_ } _%>
+<%_ if (serviceImpl) { _%>
+    @Override
+<%_ } _%>
+  public <% if (reactive) { %>Mono<<% } %>boolean<% if (reactive) { %>><% } %> existsById(<%= primaryKey.type %> <%= primaryKey.name %>){
+    log.debug("Request to check existance of <%= instanceType %> entity by id  : {}", <%= primaryKey.name %>);
+    return <%= entityInstance %>Repository.existsById(<%= primaryKey.name %>);
+  }
+
+
+<%_ if (!serviceImpl) { _%>
     /**
      * Save a <%= entityInstance %>.
      *

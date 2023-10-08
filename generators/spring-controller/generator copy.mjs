@@ -147,7 +147,7 @@ export default class SpringControllerGenerator extends BaseGenerator {
   get writing() {
     return {
       writing() {
-        this.controllerClass = _.upperFirst(this.name) + (this.name.endsWith('Controller') ? '' : 'Controller');
+        this.controllerClass = _.upperFirst(this.name) + (this.name.endsWith('Resource') ? '' : 'Resource');
         this.controllerInstance = _.lowerFirst(this.controllerClass);
         this.apiPrefix = _.kebabCase(this.name);
 
@@ -185,11 +185,11 @@ export default class SpringControllerGenerator extends BaseGenerator {
 
         this.writeFile(
           `${this.fetchFromInstalledJHipster('spring-controller/templates')}/${SERVER_MAIN_SRC_DIR}package/web/rest/Resource.java.ejs`,
-          `${SERVER_MAIN_SRC_DIR}${this.packageFolder}/controller/rest/${this.controllerClass}.java`,
+          `${SERVER_MAIN_SRC_DIR}${this.packageFolder}/web/rest/${this.controllerClass}.java`,
         );
         this.writeFile(
           `${this.fetchFromInstalledJHipster('spring-controller/templates')}/${SERVER_TEST_SRC_DIR}package/web/rest/ResourceIT.java.ejs`,
-          `${SERVER_TEST_SRC_DIR}${this.packageFolder}/controller/rest/${this.controllerClass}IT.java`,
+          `${SERVER_TEST_SRC_DIR}${this.packageFolder}/web/rest/${this.controllerClass}IT.java`,
         );
       },
     };

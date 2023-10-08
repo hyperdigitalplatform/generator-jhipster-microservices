@@ -60,6 +60,14 @@ import java.util.UUID;
  */
 public interface <%= entityClass %>Service {
 
+  /**
+    * check if a <%= entityInstance %> exists.
+    *
+    * @param <%= primaryKey.name %> primary key with <%= primaryKey.type %> type to check entity existance.
+    * @return true or false.
+    */
+  <% if (reactive) { %>Mono<<% } %> boolean <% if (reactive) { %>><% } %> existsById(<%= primaryKey.type %> <%= primaryKey.name %>);
+
     /**
      * Save a <%= entityInstance %>.
      *

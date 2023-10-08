@@ -24,9 +24,8 @@ import { createJHipsterLogger, CLI_LOGGER } from '../generators/base/support/ind
 export const CLI_NAME = 'jhipster';
 export const GENERATOR_NAME = 'generator-jhipster';
 
-const SUCCESS_MESSAGE = `Congratulations, JHipster execution is complete!
-If you find JHipster useful consider sponsoring the project ${chalk.yellow('https://www.jhipster.tech/sponsors/')}`;
-const SPONSOR_MESSAGE = 'Thanks for using JHipster!';
+const SUCCESS_MESSAGE = `Congratulations, Armedu Microservices execution is complete!`;
+const SPONSOR_MESSAGE = 'Thanks for using Armedu Microservice Platform!';
 
 export const logger = createJHipsterLogger({ namespace: CLI_LOGGER });
 
@@ -67,7 +66,7 @@ export const printSuccess = () => {
     logger.log('');
     logger.log(chalk.cyan.bold(SPONSOR_MESSAGE));
   } else {
-    logger.error(`JHipster finished with code ${process.exitCode}`);
+    logger.error(`Armedu Microservice finished with code ${process.exitCode}`);
   }
 };
 

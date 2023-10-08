@@ -503,15 +503,27 @@ export const baseServerFiles = {
       templates: ['domain/AbstractAuditingEntity.java'],
     },
   ],
-  serverJavaWebError: [
+  // serverJavaWebError: [
+  //   {
+  //     path: `${SERVER_MAIN_SRC_DIR}package/`,
+  //     renameTo: moveToJavaPackageSrcDir,
+  //     templates: [
+  //       'web/rest/errors/BadRequestAlertException.java',
+  //       'web/rest/errors/ErrorConstants.java',
+  //       'web/rest/errors/ExceptionTranslator.java',
+  //       'web/rest/errors/FieldErrorVM.java',
+  //     ],
+  //   },
+  // ],
+  serverJavaWebControllerError: [
     {
       path: `${SERVER_MAIN_SRC_DIR}package/`,
       renameTo: moveToJavaPackageSrcDir,
       templates: [
-        'web/rest/errors/BadRequestAlertException.java',
-        'web/rest/errors/ErrorConstants.java',
-        'web/rest/errors/ExceptionTranslator.java',
-        'web/rest/errors/FieldErrorVM.java',
+        'controller/errors/BadRequestAlertException.java',
+        'controller/errors/ErrorConstants.java',
+        'controller/errors/ExceptionTranslator.java',
+        'controller/errors/FieldErrorVM.java',
       ],
     },
   ],
@@ -549,15 +561,30 @@ export const baseServerFiles = {
     },
   ],
   serverTestFw: [
+    // {
+    //   path: `${SERVER_TEST_SRC_DIR}package/`,
+    //   renameTo: moveToJavaPackageTestDir,
+    //   templates: ['web/rest/TestUtil.java', 'web/rest/errors/ExceptionTranslatorTestController.java'],
+    // },
     {
       path: `${SERVER_TEST_SRC_DIR}package/`,
       renameTo: moveToJavaPackageTestDir,
-      templates: ['web/rest/TestUtil.java', 'web/rest/errors/ExceptionTranslatorTestController.java'],
+      templates: ['web/rest/TestUtil.java'],
     },
     {
       path: `${SERVER_TEST_SRC_DIR}package/`,
       renameTo: moveToJavaPackageTestDir,
-      templates: [data => `web/rest/errors/ExceptionTranslatorIT_${data.imperativeOrReactive}.java`],
+      templates: ['controller/TestUtil.java', 'controller/errors/ExceptionTranslatorTestController.java'],
+    },
+    // {
+    //   path: `${SERVER_TEST_SRC_DIR}package/`,
+    //   renameTo: moveToJavaPackageTestDir,
+    //   templates: [data => `web/rest/errors/ExceptionTranslatorIT_${data.imperativeOrReactive}.java`],
+    // },
+    {
+      path: `${SERVER_TEST_SRC_DIR}package/`,
+      renameTo: moveToJavaPackageTestDir,
+      templates: [data => `controller/errors/ExceptionTranslatorIT_${data.imperativeOrReactive}.java`],
     },
     {
       path: SERVER_TEST_RES_DIR,

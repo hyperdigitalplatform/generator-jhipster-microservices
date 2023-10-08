@@ -76,13 +76,41 @@ export const restFiles = {
       templates: ['web/rest/_EntityClass_Resource.java'],
     },
   ],
+  restFiles: [
+    {
+      condition: generator => !generator.embedded,
+      path: `${SERVER_MAIN_SRC_DIR}package/`,
+      renameTo: moveToJavaEntityPackageSrcDir,
+      templates: ['controller/_EntityClass_Controller.java'],
+    },
+  ],
+  // restTestFiles: [
+  //   {
+  //     condition: generator => !generator.embedded,
+  //     path: SERVER_TEST_SRC_DIR,
+  //     templates: [
+  //       {
+  //         file: 'package/web/rest/_EntityClass_ResourceIT.java',
+  //         options: {
+  //           context: {
+  //             _,
+  //             chalkRed: chalk.red,
+  //             fs,
+  //             SERVER_TEST_SRC_DIR,
+  //           },
+  //         },
+  //         renameTo: generator => `${generator.entityAbsoluteFolder}/web/rest/${generator.entityClass}ResourceIT.java`,
+  //       },
+  //     ],
+  //   },
+  // ],
   restTestFiles: [
     {
       condition: generator => !generator.embedded,
       path: SERVER_TEST_SRC_DIR,
       templates: [
         {
-          file: 'package/web/rest/_EntityClass_ResourceIT.java',
+          file: 'package/controller/_EntityClass_ControllerIT.java',
           options: {
             context: {
               _,
@@ -91,7 +119,7 @@ export const restFiles = {
               SERVER_TEST_SRC_DIR,
             },
           },
-          renameTo: generator => `${generator.entityAbsoluteFolder}/web/rest/${generator.entityClass}ResourceIT.java`,
+          renameTo: generator => `${generator.entityAbsoluteFolder}/controller/${generator.entityClass}ControllerIT.java`,
         },
       ],
     },
