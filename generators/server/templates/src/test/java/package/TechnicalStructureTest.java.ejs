@@ -43,7 +43,7 @@ class TechnicalStructureTest {
 <%_ if (hasClientLayer) { _%>
         .layer("Client").definedBy("..client..")
 <%_ } _%>
-        .layer("Web").definedBy("..web..")
+        .layer("Controller").definedBy("..controller..")
         .optionalLayer("Service").definedBy("..service..")
         .layer("Security").definedBy("..security..")
 <%_ if (hasDomainLayer) { _%>
@@ -55,12 +55,12 @@ class TechnicalStructureTest {
 <%_ if (hasClientLayer) { _%>
         .whereLayer("Client").mayNotBeAccessedByAnyLayer()
 <%_ } _%>
-        .whereLayer("Web").mayOnlyBeAccessedByLayers("Config")
-        .whereLayer("Service").mayOnlyBeAccessedByLayers("Web", "Config")
-        .whereLayer("Security").mayOnlyBeAccessedByLayers("Config", <% if (hasClientLayer) { %>"Client", <% } %>"Service", "Web")
+        .whereLayer("Controller").mayOnlyBeAccessedByLayers("Config")
+        .whereLayer("Service").mayOnlyBeAccessedByLayers("Controller", "Config")
+        .whereLayer("Security").mayOnlyBeAccessedByLayers("Config", <% if (hasClientLayer) { %>"Client", <% } %>"Service", "Controller")
 <%_ if (hasDomainLayer) { _%>
-        .whereLayer("Persistence").mayOnlyBeAccessedByLayers("Service", "Security", "Web", "Config")
-        .whereLayer("Domain").mayOnlyBeAccessedByLayers("Persistence", "Service", "Security", "Web", "Config")
+        .whereLayer("Persistence").mayOnlyBeAccessedByLayers("Service", "Security", "Controller", "Config")
+        .whereLayer("Domain").mayOnlyBeAccessedByLayers("Persistence", "Service", "Security", "Controller", "Config")
 <%_ } _%>
 
         .ignoreDependency(belongToAnyOf(<%= mainClass %>.class), alwaysTrue())
