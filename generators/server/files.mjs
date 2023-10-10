@@ -347,7 +347,7 @@ export const baseServerFiles = {
     },
     {
       condition: generator => generator.buildToolMaven,
-      templates: ['pom.xml'],
+      templates: ['pom.xml', 'Dockerfile'],
     },
     {
       condition: generator => !generator.skipClient,

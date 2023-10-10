@@ -126,7 +126,8 @@ const databaseData: Record<string, DatabaseDataSpec> = {
     constraintNameMaxLength: 64,
     port: ':3306/',
     extraOptions: '?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&createDatabaseIfNotExist=true',
-    defaultUsername: 'root',
+    defaultUsername: 'kaali',
+    defaultPassword: 'P@ssw0rd',
   },
   [ORACLE]: {
     name: 'Oracle',
